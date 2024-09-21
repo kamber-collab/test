@@ -14,7 +14,7 @@ using namespace std;
 ClientApp::ClientApp(RPCInterface* rpc) : rpc(rpc) {}
 
 void ClientApp::hello() {
-    string response = rpc->callRemoteFunction("Greeting", "");
+    string response = rpc->callRemoteFunction("hello", "");
     cout << "Server -> Client response:: " << response << endl;
 }
 

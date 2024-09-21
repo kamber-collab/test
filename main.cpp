@@ -41,7 +41,7 @@ int main() {
         return clientTransport.sendRequest(request);
     });
 
-    // Create the client application
+    // Client application
     ClientApp clientApp(&clientRPC);
 
     std::cout << "Client::hello:: " << std::endl;
