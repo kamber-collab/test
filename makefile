@@ -1,6 +1,6 @@
 # Master make file
 # Always build everything
-.PHONY: all common  application rpc_demo clean
+.PHONY: all common core application rpc_demo clean
 
 # Global Compiler and FLags
 CXX = g++
@@ -13,16 +13,21 @@ all: rpc_demo
 common:
 	$(MAKE) -C common CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
 
+# Core library second
+core: common
+	$(MAKE) -C core CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
+
 # Application library
-application:
+application: core
 	$(MAKE) -C application CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
 
 # Complie all libs first and then link to the main
-rpc_demo: common application
-	$(CXX) $(CXXFLAGS) main.cpp -Iapplication/include -Icommon/include \
-	-Lapplication -lapp -Lcommon -lcommon -o rpc_demo
+rpc_demo: common core application
+	$(CXX) $(CXXFLAGS) main.cpp -Iapplication/include -Icore/rpc/include -Icore/transport/include -Icore/protocol_format/include -Icommon/include \
+		-Lcore -lcore -Lapplication -lapp -Lcommon -lcommon -o rpc_demo
 
 clean:
 	$(MAKE) -C common clean
+	$(MAKE) -C core clean
 	$(MAKE) -C application clean
 	rm -f rpc_demo rpc_demo.o
