@@ -1,6 +1,6 @@
 .PHONY: all clean
 
-INCLUDES = -I../common/include -Iinclude
+INCLUDES = -I../core/rpc/include -I../core/transport/include -I../core/protocol_format/include -I../common/include -Iinclude
 
 SOURCES = src/client_app.cpp src/server_app.cpp
 
