@@ -17,9 +17,9 @@ class ClientRPC : public RPCInterface {
 public:
     ClientRPC(ProtocolFormat& protocolFormat, Logging& logging);
     void setCallback(RPCCallback callback) override;
-    std::string callRemoteFunction(const std::string& functionName, const std::string& params) override;
+    string callRemoteFunction(const string& functionName, const string& params) override;
     string callRemoteFunction(const string& functionName, const int a, const int b) override;
-    std::string handleRequest(const std::string& request) override;
+    string handleRequest(const string& request) override;
 
 private:
     RPCCallback rpcCallback;

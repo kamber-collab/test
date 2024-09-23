@@ -4,9 +4,9 @@
 using namespace std;
 
 void Logging::logRequest(const string& request) {
-    cout << "[Info] Request: " << request << endl;
+    cout << "[RPC Info] Request: " << request << endl;
 }
 
 void Logging::logResponse(const string& response) {
-    cout << "[Info] Response: " << response << endl;
+    cout << "[RPC Info] Response: " << response << endl;
 }

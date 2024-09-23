@@ -16,6 +16,7 @@
 #include "client_transport.h"
 #include "server_transport.h"
 
+using namespace std;
 
 int main() {
 
@@ -32,22 +33,22 @@ int main() {
     ClientTransport clientTransport;
 
     // Register transport callback on the client to use server request
-    clientTransport.setCallback([&serverTransport](const std::string& request) {
+    clientTransport.setCallback([&serverTransport](const string& request) {
         return serverTransport.sendRequest(request);
     });
 
     // Register the transport callback to RPC for the client
-    clientRPC.setCallback([&clientTransport](const std::string& request) {
+    clientRPC.setCallback([&clientTransport](const string& request) {
         return clientTransport.sendRequest(request);
     });
 
     // Client application
     ClientApp clientApp(&clientRPC);
 
-    std::cout << "Client::hello:: " << std::endl;
+    cout << "Client::hello:: " << endl;
     clientApp.hello();
 
-    std::cout << "\nClient::add:: " << std::endl;
+    cout << "\nClient::add:: " << endl;
     clientApp.add(5, 3);
 
     return 0;
